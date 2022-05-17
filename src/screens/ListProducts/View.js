@@ -1,22 +1,26 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Text,
-  ActivityIndicator,
-} from 'react-native';
-import ProductLits from './ProductList';
+import {SafeAreaView, View, ActivityIndicator} from 'react-native';
+import Products from '../../components/Products';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 import styles from './styles';
 
 class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: 'test',
+      search: '',
       filtedData: props.data,
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.data !== state.filtedData) {
+      return {
+        filtedData: props.data,
+      };
+    }
+    return null;
   }
 
   filterProducts = () => {
@@ -30,20 +34,17 @@ class List extends React.Component {
     return (
       <SafeAreaView style={styles.wrapper}>
         <View style={styles.searchContainer}>
-          <TextInput
-            style={styles.input}
+          <Input
             value={this.state.search}
             onChangeText={_value => {
               this.setState({search: _value});
             }}
           />
-          <TouchableOpacity style={styles.button} onPress={this.filterProducts}>
-            <Text style={styles.searchTitle}>Search</Text>
-          </TouchableOpacity>
+          <Button title={'Search'} onPress={this.filterProducts} />
         </View>
         {this.props.loading && <ActivityIndicator />}
         {!this.props.loading && (
-          <ProductLits
+          <Products
             data={this.state.filtedData}
             onSelect={this.props.onDetail}
           />

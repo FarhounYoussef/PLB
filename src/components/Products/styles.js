@@ -1,45 +1,47 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {COLORS} from '../../utils/constants';
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    elevation: 5,
+    marginHorizontal: 20,
+    marginVertical: 10,
+    flexDirection: 'row',
     backgroundColor: COLORS.WHITE,
+    borderRadius: 10,
   },
   image: {
-    width: Dimensions.get('window').width,
-    height: 200,
+    width: 100,
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
     resizeMode: 'contain',
-    backgroundColor: COLORS.WHITE,
   },
   productDetail: {
     flex: 1,
-    padding: 20,
-    justifyContent: 'flex-start',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   productInfo: {
     flexDirection: 'row',
   },
   productName: {
-    fontSize: 20,
+    flex: 1,
     fontWeight: '600',
     color: COLORS.BLACK,
   },
   priceText: {
     color: COLORS.BLACK,
     fontWeight: '700',
-    marginTop: 15,
-    fontSize: 16,
-    textAlign: 'right',
+  },
+  description: {
+    flex: 1,
+    marginVertical: 5,
   },
   descriptionText: {
     color: COLORS.BLACK,
-    marginTop: 15,
-    fontSize: 16,
   },
   stock: {
     textAlign: 'right',
-    marginTop: 30,
     fontWeight: '700',
   },
   stockIn: {

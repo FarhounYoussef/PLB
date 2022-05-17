@@ -1,7 +1,8 @@
 import React from 'react';
-import {FlatList, View, Text, Image, StyleSheet, Pressable} from 'react-native';
+import {FlatList, View, Text, Image, Pressable} from 'react-native';
+import styles from './styles';
 
-class ProductLits extends React.Component {
+class Products extends React.Component {
   render() {
     return (
       <FlatList
@@ -17,12 +18,18 @@ class ProductLits extends React.Component {
               <View style={styles.productDetail}>
                 <View style={styles.productInfo}>
                   <Text style={styles.productName}>{item.product}</Text>
-                  <Text>{item.prix}</Text>
+                  <Text style={styles.priceText}>{item.prix}$</Text>
                 </View>
                 <View style={styles.description}>
-                  <Text>{item.description}</Text>
+                  <Text style={styles.descriptionText}>{item.description}</Text>
                 </View>
-                <Text style={styles.stock}>{item.stock}</Text>
+                <Text
+                  style={[
+                    styles.stock,
+                    item.stock > 0 ? styles.stockIn : styles.stockOut,
+                  ]}>
+                  {item.stock > 0 ? 'En stock' : 'Indiponible'}
+                </Text>
               </View>
             </View>
           </Pressable>
@@ -32,32 +39,4 @@ class ProductLits extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    // height: 80,
-  },
-  image: {
-    height: 80,
-    width: 80,
-  },
-  productDetail: {
-    flex: 1,
-  },
-  productInfo: {
-    flexDirection: 'row',
-  },
-  productName: {
-    flex: 1,
-  },
-  description: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  stock: {
-    textAlign: 'right',
-  },
-});
-
-export default ProductLits;
+export default Products;

@@ -1,23 +1,15 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../utils/constants';
 
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
+    backgroundColor: COLORS.WHITE,
   },
   searchContainer: {
     flexDirection: 'row',
-    margin: 5,
-  },
-  input: {
-    flex: 1,
-  },
-  button: {
-    padding: 10,
-    backgroundColor: 'red',
-    borderRadius: 15,
-  },
-  searchTitle: {
-    color: 'white',
-    fontWeight: '700',
+    marginTop: 20,
+    marginHorizontal: 20,
+    marginBottom: 10,
   },
 });
