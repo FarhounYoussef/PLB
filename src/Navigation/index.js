@@ -1,15 +1,50 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {ListProducts, ProductDetail} from '../screens';
 
-const Stack = createNativeStackNavigator();
+const StackHome = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const HomeNavigator = () => {
+  return (
+    <StackHome.Navigator initialRouteName="List">
+      <StackHome.Screen
+        name="List"
+        component={ListProducts}
+        options={{
+          title: 'List produit',
+        }}
+      />
+      <StackHome.Screen name="Detail" component={ProductDetail} />
+    </StackHome.Navigator>
+  );
+};
+
+const FavoriteNavigator = () => {
+  return (
+    <StackHome.Navigator initialRouteName="List">
+      <StackHome.Screen
+        name="List"
+        component={ListProducts}
+        options={{
+          title: 'Favoris',
+        }}
+      />
+    </StackHome.Navigator>
+  );
+};
 
 const Navigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={ListProducts} />
-      <Stack.Screen name="Detail" component={ProductDetail} />
-    </Stack.Navigator>
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Tab.Screen name="Home" component={HomeNavigator} />
+      <Tab.Screen name="Favoris" component={FavoriteNavigator} />
+    </Tab.Navigator>
   );
 };
 
