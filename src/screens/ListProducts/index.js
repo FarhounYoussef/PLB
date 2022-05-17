@@ -51,9 +51,11 @@ class List extends React.Component {
 
   componentDidMount() {
     this.setState({loading: true});
-    setTimeout(() => {
-      this.setState({data: DATA, loading: false});
-    }, 2000);
+    fetch('http://192.168.86.27:3000/products')
+      .then(response => response.json())
+      .then(result => {
+        this.setState({data: result, loading: false});
+      });
   }
 
   onDetail = item => {
