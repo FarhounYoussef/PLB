@@ -57,10 +57,11 @@ class App extends React.Component {
       loading: false,
     };
   }
+
   componentDidMount() {
     this.setState({loading: true});
     setTimeout(() => {
-      this.setState({data: DATA});
+      this.setState({data: DATA, loading: false});
     }, 2000);
   }
 

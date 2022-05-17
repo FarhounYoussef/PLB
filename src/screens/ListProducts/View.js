@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  ActivityIndicator,
 } from 'react-native';
 import ProductLits from './ProductList';
 import styles from './styles';
@@ -40,7 +41,8 @@ class ListProducts extends React.Component {
             <Text style={styles.searchTitle}>Search</Text>
           </TouchableOpacity>
         </View>
-        <ProductLits data={this.state.filtedData} />
+        {this.props.loading && <ActivityIndicator />}
+        {!this.props.loading && <ProductLits data={this.state.filtedData} />}
       </SafeAreaView>
     );
   }
