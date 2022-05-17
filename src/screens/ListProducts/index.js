@@ -49,13 +49,14 @@ const DATA = [
   },
 ];
 
-class App extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
       loading: false,
     };
+    console.log(props.navigation);
   }
 
   componentDidMount() {
@@ -65,9 +66,19 @@ class App extends React.Component {
     }, 2000);
   }
 
+  onDetail = item => {
+    this.props.navigation.navigate('Detail', {product: item});
+  };
+
   render() {
-    return <View data={this.state.data} loading={this.state.loading} />;
+    return (
+      <View
+        data={this.state.data}
+        loading={this.state.loading}
+        onDetail={this.onDetail}
+      />
+    );
   }
 }
 
-export default App;
+export default List;

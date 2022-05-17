@@ -10,7 +10,7 @@ import {
 import ProductLits from './ProductList';
 import styles from './styles';
 
-class ListProducts extends React.Component {
+class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,10 +42,15 @@ class ListProducts extends React.Component {
           </TouchableOpacity>
         </View>
         {this.props.loading && <ActivityIndicator />}
-        {!this.props.loading && <ProductLits data={this.state.filtedData} />}
+        {!this.props.loading && (
+          <ProductLits
+            data={this.state.filtedData}
+            onSelect={this.props.onDetail}
+          />
+        )}
       </SafeAreaView>
     );
   }
 }
 
-export default ListProducts;
+export default List;

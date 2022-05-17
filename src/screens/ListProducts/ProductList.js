@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View, Text, Image, StyleSheet} from 'react-native';
+import {FlatList, View, Text, Image, StyleSheet, Pressable} from 'react-native';
 
 class ProductLits extends React.Component {
   render() {
@@ -8,19 +8,24 @@ class ProductLits extends React.Component {
         data={this.props.data}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <View style={styles.container}>
-            <Image source={{uri: item.image}} style={styles.image} />
-            <View style={styles.productDetail}>
-              <View style={styles.productInfo}>
-                <Text style={styles.productName}>{item.product}</Text>
-                <Text>{item.prix}</Text>
+          <Pressable
+            onPress={() => {
+              this.props.onSelect(item);
+            }}>
+            <View style={styles.container}>
+              <Image source={{uri: item.image}} style={styles.image} />
+              <View style={styles.productDetail}>
+                <View style={styles.productInfo}>
+                  <Text style={styles.productName}>{item.product}</Text>
+                  <Text>{item.prix}</Text>
+                </View>
+                <View style={styles.description}>
+                  <Text>{item.description}</Text>
+                </View>
+                <Text style={styles.stock}>{item.stock}</Text>
               </View>
-              <View style={styles.description}>
-                <Text>{item.description}</Text>
-              </View>
-              <Text style={styles.stock}>{item.stock}</Text>
             </View>
-          </View>
+          </Pressable>
         )}
       />
     );
