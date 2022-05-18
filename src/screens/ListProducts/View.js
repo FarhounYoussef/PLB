@@ -1,57 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, ActivityIndicator} from 'react-native';
 import Products from '../../components/Products';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styles from './styles';
 
-class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      search: '',
-      filtedData: props.data,
-    };
-  }
+const List = props => {
+  const [search, setSeach] = useState('');
+  const [filtedData, setFiltedData] = useState(props.data);
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.data !== state.filtedData) {
-      return {
-        filtedData: props.data,
-      };
-    }
-    return null;
-  }
+  useEffect(() => {
+    setFiltedData(props.data);
+  }, [props.data]);
 
-  filterProducts = () => {
-    const newData = this.props.data.filter(produit =>
-      produit.product.includes(this.state.search),
+  const filterProducts = () => {
+    const newData = props.data.filter(produit =>
+      produit.product.includes(search),
     );
-    this.setState({filtedData: newData});
+    setFiltedData(newData);
   };
 
-  render() {
-    return (
-      <SafeAreaView style={styles.wrapper}>
-        <View style={styles.searchContainer}>
-          <Input
-            value={this.state.search}
-            onChangeText={_value => {
-              this.setState({search: _value});
-            }}
-          />
-          <Button title={'Search'} onPress={this.filterProducts} />
-        </View>
-        {this.props.loading && <ActivityIndicator />}
-        {!this.props.loading && (
-          <Products
-            data={this.state.filtedData}
-            onSelect={this.props.onDetail}
-          />
-        )}
-      </SafeAreaView>
-    );
-  }
-}
+  return (
+    <SafeAreaView style={styles.wrapper}>
+      <View style={styles.searchContainer}>
+        <Input value={search} onChangeText={setSeach} />
+        <Button title={'Search'} onPress={filterProducts} />
+      </View>
+      {props.loading && <ActivityIndicator />}
+      {!props.loading && (
+        <Products data={filtedData} onSelect={props.onDetail} />
+      )}
+    </SafeAreaView>
+  );
+};
 
 export default List;

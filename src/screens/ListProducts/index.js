@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import View from './view';
 
 const DATA = [
@@ -40,35 +40,23 @@ const DATA = [
   },
 ];
 
-class List extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loading: false,
-    };
-  }
+const List = props => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  componentDidMount() {
-    this.setState({loading: true});
+  useEffect(() => {
+    setLoading(true);
     setTimeout(() => {
-      this.setState({data: DATA, loading: false});
+      setData(DATA);
+      setLoading(false);
     }, 2000);
-  }
+  }, []);
 
-  onDetail = item => {
-    this.props.navigation.navigate('Detail', {product: item});
+  const onDetail = item => {
+    props.navigation.navigate('Detail', {product: item});
   };
 
-  render() {
-    return (
-      <View
-        data={this.state.data}
-        loading={this.state.loading}
-        onDetail={this.onDetail}
-      />
-    );
-  }
-}
+  return <View data={data} loading={loading} onDetail={onDetail} />;
+};
 
 export default List;
