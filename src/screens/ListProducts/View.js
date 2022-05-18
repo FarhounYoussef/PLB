@@ -32,7 +32,7 @@ const List = props => {
   };
 
   const onDetail = item => {
-    navigation.navigate('Detail', {product: item});
+    navigation.navigate('Create', {product: item});
   };
 
   const onAddFavorite = item => {
@@ -41,6 +41,10 @@ const List = props => {
 
   const onRemoveFavorite = item => {
     dispatch(removeFavorite(item));
+  };
+
+  const onCreate = () => {
+    navigation.navigate('Create');
   };
 
   return (
@@ -58,6 +62,9 @@ const List = props => {
           onRemoveFavorite={onRemoveFavorite}
         />
       )}
+      <View style={styles.footer}>
+        <Button title="Add product" onPress={onCreate} />
+      </View>
     </SafeAreaView>
   );
 };

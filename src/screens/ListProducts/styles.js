@@ -12,4 +12,8 @@ export default StyleSheet.create({
     marginHorizontal: 20,
     marginBottom: 10,
   },
+  footer: {
+    alignItems: 'flex-end',
+    margin: 20,
+  },
 });
