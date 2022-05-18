@@ -23,3 +23,25 @@ export const useAppState = () => {
     };
   }, []);
 };
+
+export const useAPI = url => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [error, setError] = useState(false);
+
+  const getData = () => {
+    setLoading(true);
+    fetch(url)
+      .then(result => result.json())
+      .then(result => {
+        setData(result);
+      })
+      .catch(() => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+  return [getData, {loading, data, error}];
+};
