@@ -4,8 +4,10 @@ import Products from '../../components/Products';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import styles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const List = props => {
+  const navigation = useNavigation();
   const [search, setSeach] = useState('');
   const [filtedData, setFiltedData] = useState(props.data);
 
@@ -13,11 +15,21 @@ const List = props => {
     setFiltedData(props.data);
   }, [props.data]);
 
+  useEffect(() => {
+    navigation.setOptions({
+      title: `List Produit (${filtedData.length})`,
+    });
+  }, [filtedData]);
+
   const filterProducts = () => {
     const newData = props.data.filter(produit =>
       produit.product.includes(search),
     );
     setFiltedData(newData);
+  };
+
+  const onDetail = item => {
+    navigation.navigate('Detail', {product: item});
   };
 
   return (
@@ -27,9 +39,7 @@ const List = props => {
         <Button title={'Search'} onPress={filterProducts} />
       </View>
       {props.loading && <ActivityIndicator />}
-      {!props.loading && (
-        <Products data={filtedData} onSelect={props.onDetail} />
-      )}
+      {!props.loading && <Products data={filtedData} onSelect={onDetail} />}
     </SafeAreaView>
   );
 };

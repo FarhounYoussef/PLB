@@ -49,7 +49,7 @@ const Navigation = () => {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Produits',
           tabBarActiveTintColor: COLORS.PRIMARY,
           tabBarIcon: ({focused, color, size}) => (
             <Icons

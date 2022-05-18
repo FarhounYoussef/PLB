@@ -52,11 +52,7 @@ const List = props => {
     }, 2000);
   }, []);
 
-  const onDetail = item => {
-    props.navigation.navigate('Detail', {product: item});
-  };
-
-  return <View data={data} loading={loading} onDetail={onDetail} />;
+  return <View data={data} loading={loading} />;
 };
 
 export default List;
