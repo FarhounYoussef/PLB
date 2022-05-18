@@ -26,3 +26,13 @@ export const fetchProducts = () => {
       });
   };
 };
+
+export const addFavorite = data => ({
+  type: ACTIONS.FAVORITE_ADD,
+  product: data,
+});
+
+export const removeFavorite = data => ({
+  type: ACTIONS.FAVORITE_REMOVE,
+  product: data,
+});

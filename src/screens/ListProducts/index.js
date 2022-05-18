@@ -4,7 +4,14 @@ import {fetchProducts} from '../../app/actions';
 import {useSelector, useDispatch} from 'react-redux';
 
 const List = () => {
-  const {data, loading} = useSelector(state => state.products);
+  const {data, loading} = useSelector(state => ({
+    ...state.products,
+    data: state.products.data.map(item => ({
+      ...item,
+      isFavorite: state.favorites.includes(item.id),
+    })),
+  }));
+
   const dispatch = useDispatch();
 
   useEffect(() => {

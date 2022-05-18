@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {COLORS} from '../utils/constants';
 
-import {ListProducts, ProductDetail} from '../screens';
+import {ListProducts, ProductDetail, FavoriteProducts} from '../screens';
 
 const StackHome = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -29,7 +29,7 @@ const FavoriteNavigator = () => {
     <StackHome.Navigator initialRouteName="List">
       <StackHome.Screen
         name="List"
-        component={ListProducts}
+        component={FavoriteProducts}
         options={{
           title: 'Favoris',
         }}
