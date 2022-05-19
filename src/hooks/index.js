@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import {AppState} from 'react-native';
+import {Context} from '../contexts/user';
 
 export const useFiltredData = DATA => {
   const [filtedData, setFiltedData] = useState(DATA);
@@ -44,4 +45,10 @@ export const useAPI = url => {
       });
   };
   return [getData, {loading, data, error}];
+};
+
+export const useUserInfo = () => {
+  const values = useContext(Context);
+
+  return values;
 };

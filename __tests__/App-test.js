@@ -1,14 +1,15 @@
-/**
- * @format
- */
-
-import 'react-native';
 import React from 'react';
-import App from '../App';
+import {shallow, configure} from 'enzyme';
+import Input from '../src/components/Input';
+import Adapter from 'enzyme-adapter-react-16';
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+configure({adapter: new Adapter()});
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+describe('Testing ReassignLocationMenu component', () => {
+  it('renders as expected', () => {
+    const wrapper = shallow(<Input label={'Test label 1'} />);
+    expect(wrapper).toMatchSnapshot();
+    wrapper.setProps({label: 'Test label 2'});
+    expect(wrapper).toMatchSnapshot();
+  });
 });

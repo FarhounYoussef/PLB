@@ -1,15 +1,7 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-  PermissionsAndroid,
-} from 'react-native';
+import {SafeAreaView, Text, TouchableOpacity, View, Image} from 'react-native';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import styles from './styles';
 import {useRoute} from '@react-navigation/native';
 
@@ -21,10 +13,7 @@ const List = () => {
 
   const onChange = field => value => setState({...state, [field]: value});
 
-  const addImage = async () => {
-    const result = await launchCamera();
-    result && onChange('image')(result.assets[0].uri);
-  };
+  const addImage = () => {};
 
   return (
     <SafeAreaView style={styles.wrapper}>

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ReassignLocationMenu component renders as expected 1`] = `
+<Fragment>
+  <Label>
+    Test label 1
+  </Label>
+  <TextInput
+    label="Test label 1"
+    style={
+      Object {
+        "borderColor": "#bacbde",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "flex": 1,
+        "height": 44,
+        "marginRight": 10,
+        "paddingLeft": 15,
+      }
+    }
+  />
+</Fragment>
+`;
+
+exports[`Testing ReassignLocationMenu component renders as expected 2`] = `
+<Fragment>
+  <Label>
+    Test label 2
+  </Label>
+  <TextInput
+    label="Test label 2"
+    style={
+      Object {
+        "borderColor": "#bacbde",
+        "borderRadius": 10,
+        "borderWidth": 1,
+        "flex": 1,
+        "height": 44,
+        "marginRight": 10,
+        "paddingLeft": 15,
+      }
+    }
+  />
+</Fragment>
+`;
